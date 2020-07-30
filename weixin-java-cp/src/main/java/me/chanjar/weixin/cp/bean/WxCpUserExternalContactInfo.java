@@ -122,10 +122,14 @@ public class WxCpUserExternalContactInfo {
     @SerializedName("remark_corp_name")
     private String remarkCorpName;
 <<<<<<< HEAD
+<<<<<<< HEAD
     @SerializedName("add_way")
 =======
     @SerializedName("addWay")
 >>>>>>> 外部联系人客户详情新增增加字段
+=======
+    @SerializedName("add_way")
+>>>>>>> 修改 add_way字段错误
     private String addWay;
     @SerializedName("oper_userid")
     private String operUserId;
