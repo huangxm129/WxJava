@@ -27,7 +27,7 @@ public class WxCpExternalContactServiceImplTest {
   @Test
   public void testGetExternalContact() throws WxErrorException {
     String externalUserId = this.configStorage.getExternalUserId();
-    WxCpUserExternalContactInfo result = this.wxCpService.getExternalContactService().getContactDetail(externalUserId);
+    WxCpUserExternalContactInfo result = this.wxCpService.getExternalContactService().getExternalContact(externalUserId);
     System.out.println(result);
     assertNotNull(result);
   }
