@@ -239,7 +239,7 @@ public class WxCpExternalContactServiceImpl implements WxCpExternalContactServic
   public WxCpUserExternalTagGroupInfo addCorpTag(WxCpUserExternalTagGroupInfo tagGroup) throws WxErrorException{
 
     final String url = this.mainService.getWxCpConfigStorage().getApiUrl(ADD_CORP_TAG);
-    final String result = this.mainService.post(url,tagGroup.toJson());
+    final String result = this.mainService.post(url,tagGroup.getTagGroup().toJson());
     return WxCpUserExternalTagGroupInfo.fromJson(result);
   }
 
