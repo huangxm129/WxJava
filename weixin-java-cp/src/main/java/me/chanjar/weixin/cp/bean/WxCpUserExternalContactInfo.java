@@ -123,6 +123,7 @@ public class WxCpUserExternalContactInfo {
     private String remarkCorpName;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     @SerializedName("add_way")
 =======
     @SerializedName("addWay")
@@ -130,6 +131,9 @@ public class WxCpUserExternalContactInfo {
 =======
     @SerializedName("add_way")
 >>>>>>> 修改 add_way字段错误
+=======
+    @SerializedName("add_way")
+>>>>>>> origin/develop
     private String addWay;
     @SerializedName("oper_userid")
     private String operUserId;
