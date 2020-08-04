@@ -262,7 +262,7 @@ public class WxCpExternalContactServiceImpl implements WxCpExternalContactServic
       json.add("tag_id",new Gson().toJsonTree(tagId).getAsJsonArray());
     }
     if(ArrayUtils.isNotEmpty(groupId)){
-      json.add("group_id",new Gson().toJsonTree(tagId).getAsJsonArray());
+      json.add("group_id",new Gson().toJsonTree(groupId).getAsJsonArray());
     }
 
     final String url = this.mainService.getWxCpConfigStorage().getApiUrl(DEL_CORP_TAG);
