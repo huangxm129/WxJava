@@ -117,7 +117,7 @@ public class WxCpExternalContactServiceImplTest {
 
     List<WxCpUserExternalTagGroupInfo.Tag> list = new ArrayList<>();
     WxCpUserExternalTagGroupInfo.Tag  tag = new  WxCpUserExternalTagGroupInfo.Tag();
-    tag.setName("测试标签9");
+    tag.setName("测试标签20");
     tag.setOrder(1);
     list.add(tag);
 
@@ -146,8 +146,8 @@ public class WxCpExternalContactServiceImplTest {
   @Test
   public void testDelCorpTag() throws WxErrorException {
 
-    String tagId[] = {"et2omCCwAA6PtGsfeEOQMENl3Ub1FA6A"};
-    String groupId[] = {};
+    String tagId[] = {};
+    String groupId[] = {"et2omCCwAAM3WzL00QpK9xARab3HGkAg"};
 
     WxCpBaseResp result = this.wxCpService.getExternalContactService().delCorpTag(tagId,groupId);
 
