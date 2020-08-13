@@ -77,6 +77,14 @@ public class WxCpContactWayInfo {
 
   /**
    * <pre>
+   * 联系二维码的URL，仅在scene为2时返回
+   * </pre>
+   */
+  @SerializedName("qr_code")
+  private String qrCode;
+
+  /**
+   * <pre>
    * 使用该联系方式的用户userID列表，在type为1时为必填，且只能有一个
    * </pre>
    */
