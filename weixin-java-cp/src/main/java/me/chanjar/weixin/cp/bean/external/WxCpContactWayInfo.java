@@ -1,4 +1,4 @@
-package me.chanjar.weixin.cp.bean;
+package me.chanjar.weixin.cp.bean.external;
 
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -107,7 +107,7 @@ public class WxCpContactWayInfo {
      * </pre>
      */
     @SerializedName("party")
-    private List<String> partys;
+    private List<String> parties;
 
     /**
      * <pre>
@@ -196,7 +196,7 @@ public class WxCpContactWayInfo {
      * 单人
      */
     @SerializedName("1")
-    SIGLE,
+    SINGLE,
 
     /**
      * 多人
