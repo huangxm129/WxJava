@@ -4,8 +4,8 @@ import com.google.common.base.Joiner;
 import com.google.gson.JsonObject;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import me.chanjar.weixin.common.enums.WxType;
 import me.chanjar.weixin.common.bean.WxAccessToken;
+import me.chanjar.weixin.common.enums.WxType;
 import me.chanjar.weixin.common.error.WxCpErrorMsgEnum;
 import me.chanjar.weixin.common.error.WxError;
 import me.chanjar.weixin.common.error.WxErrorException;
@@ -271,6 +271,18 @@ public abstract class BaseWxCpTpServiceImpl<H, P> implements WxCpTpService, Requ
   @Override
   public RequestHttp<?, ?> getRequestHttp() {
     return this;
+  }
+
+  @Override
+  public WxCpTpUserInfo getuserinfo3rd(String code) throws WxErrorException{
+    String result = post(configStorage.getApiUrl(GET_USERINFO3RD), code);
+    return WxCpTpUserInfo.fromJson(result);
+  }
+
+  @Override
+  public WxCpTpUserDetail getuserdetail3rd(String userTicket) throws WxErrorException{
+    String result = post(configStorage.getApiUrl(GET_USERDETAIL3RD), userTicket);
+    return WxCpTpUserDetail.fromJson(result);
   }
 
 }

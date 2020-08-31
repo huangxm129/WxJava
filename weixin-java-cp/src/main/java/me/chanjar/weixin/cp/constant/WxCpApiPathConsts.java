@@ -94,6 +94,8 @@ public final class WxCpApiPathConsts {
     public static final String GET_PROVIDER_TOKEN = "/cgi-bin/service/get_provider_token";
     public static final String GET_PREAUTH_CODE = "/cgi-bin/service/get_pre_auth_code";
     public static final String GET_AUTH_INFO = "/cgi-bin/service/get_auth_info";
+    public static final String GET_USERINFO3RD = "/cgi-bin/service/getuserinfo3rd";
+    public static final String GET_USERDETAIL3RD = "/cgi-bin/service/getuserdetail3rd";
   }
 
   public static class User {
