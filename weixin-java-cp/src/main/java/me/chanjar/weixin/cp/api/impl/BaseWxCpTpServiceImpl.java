@@ -285,4 +285,9 @@ public abstract class BaseWxCpTpServiceImpl<H, P> implements WxCpTpService, Requ
     return WxCpTpUserDetail.fromJson(result);
   }
 
+  @Override
+  public WxCpTpLoginInfo getLoginInfo(String authCode) throws WxErrorException{
+    String result = post(configStorage.getApiUrl(GET_LOGIN_INFO), authCode);
+    return WxCpTpLoginInfo.fromJson(result);
+  }
 }

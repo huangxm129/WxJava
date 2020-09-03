@@ -111,6 +111,7 @@ public final class WxCpApiPathConsts {
     public static final String GET_AUTH_INFO = "/cgi-bin/service/get_auth_info";
     public static final String GET_USERINFO3RD = "/cgi-bin/service/getuserinfo3rd";
     public static final String GET_USERDETAIL3RD = "/cgi-bin/service/getuserdetail3rd";
+    public static final String GET_LOGIN_INFO = "/cgi-bin/service/get_login_info";
   }
 
   public static class User {

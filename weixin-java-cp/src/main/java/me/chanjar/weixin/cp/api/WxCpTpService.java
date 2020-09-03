@@ -216,4 +216,13 @@ public interface WxCpTpService {
    */
   WxCpTpUserDetail getuserdetail3rd(String userTicket) throws WxErrorException;
 
+  /**
+   * 获取登录用户信息
+   * 通过扫码登陆获取auth_code,参考配置：https://work.weixin.qq.com/api/doc/90001/90143/91124
+   * @param authCode
+   * @return
+   * @throws WxErrorException
+   */
+  WxCpTpLoginInfo getLoginInfo(String authCode) throws WxErrorException;
+
 }

@@ -7,30 +7,30 @@ import me.chanjar.weixin.cp.util.json.WxCpGsonBuilder;
 import java.io.Serializable;
 
 /**
- * 获取访问用户身份
+ * 获取访问用户敏感信息
  * @author huangxiaoming
  */
 @Data
-public class WxCpTpUserInfo implements Serializable {
+public class WxCpTpUserInfo extends WxCpBaseResp {
 
   private static final long serialVersionUID = -5028321625140879571L;
-  @SerializedName("corpid")
+  @SerializedName("CorpId")
   private String corpId;
 
-  @SerializedName("userid")
+  @SerializedName("UserId")
   private String userId;
 
-  @SerializedName("name")
-  private String name;
+  @SerializedName("DeviceId")
+  private String deviceId;
 
-  @SerializedName("gender")
-  private String gender;
+  @SerializedName("user_ticket")
+  private String userTicket;
 
-  @SerializedName("avatar")
-  private String avatar;
+  @SerializedName("expires_in")
+  private String expiresIn;
 
-  @SerializedName("qr_code")
-  private String qrCode;
+  @SerializedName("open_userid")
+  private String openUserId;
 
   public static WxCpTpUserInfo fromJson(String json) {
     return WxCpGsonBuilder.create().fromJson(json, WxCpTpUserInfo.class);
