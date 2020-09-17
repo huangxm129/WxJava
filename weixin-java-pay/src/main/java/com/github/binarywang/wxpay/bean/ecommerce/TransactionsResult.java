@@ -1,7 +1,6 @@
 package com.github.binarywang.wxpay.bean.ecommerce;
 
 import com.github.binarywang.wxpay.bean.ecommerce.enums.TradeTypeEnum;
-import com.github.binarywang.wxpay.v3.util.AesUtils;
 import com.github.binarywang.wxpay.v3.util.SignUtils;
 import com.google.gson.annotations.SerializedName;
 import lombok.Data;
@@ -10,18 +9,14 @@ import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 import java.security.PrivateKey;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
-import java.util.UUID;
 
 /**
  * 合单支付 JSAPI支付结果响应
  */
 @Data
 @NoArgsConstructor
-public class CombineTransactionsResult implements Serializable {
-
+public class TransactionsResult implements Serializable {
+  private static final long serialVersionUID = 1760592667519950149L;
   /**
    * <pre>
    * 字段名：预支付交易会话标识 （APP支付、JSAPI支付 会返回）
@@ -102,7 +97,7 @@ public class CombineTransactionsResult implements Serializable {
           //签名类型，默认为RSA，仅支持RSA。
           .setSignType("RSA").setPaySign(SignUtils.sign(jsapiResult.getSignStr(), privateKey));
         return (T) jsapiResult;
-      case H5:
+      case MWEB:
         return (T) this.h5Url;
       case APP:
         AppResult appResult = new AppResult();
