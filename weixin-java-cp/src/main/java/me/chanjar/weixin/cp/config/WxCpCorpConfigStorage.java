@@ -1,7 +1,7 @@
 package me.chanjar.weixin.cp.config;
 
-import me.chanjar.weixin.common.bean.WxAccessToken;
 import me.chanjar.weixin.common.util.http.apache.ApacheHttpClientBuilder;
+import me.chanjar.weixin.cp.bean.WxCpProviderToken;
 
 import java.io.File;
 
@@ -10,7 +10,7 @@ import java.io.File;
  *
  * @author zhenjun cai
  */
-public interface WxCpTpConfigStorage {
+public interface WxCpCorpConfigStorage {
 
   /**
    * 设置企业微信服务器 baseUrl.
@@ -26,46 +26,13 @@ public interface WxCpTpConfigStorage {
    */
   String getApiUrl(String path);
 
-  String getSuiteAccessToken();
-
-  boolean isSuiteAccessTokenExpired();
-
-  /**
-   * 强制将suite access token过期掉.
-   */
-  void expireSuiteAccessToken();
-
-  void updateSuiteAccessToken(WxAccessToken suiteAccessToken);
-
-  void updateSuiteAccessToken(String suiteAccessToken, int expiresIn);
-
-  String getSuiteTicket();
-
-  boolean isSuiteTicketExpired();
-
-  /**
-   * 强制将suite ticket过期掉.
-   */
-  void expireSuiteTicket();
-
-  /**
-   * 应该是线程安全的.
-   */
-  void updateSuiteTicket(String suiteTicket, int expiresInSeconds);
-
   String getCorpId();
 
-  String getCorpSecret();
-
-  String getSuiteId();
-
-  String getSuiteSecret();
+  String getProviderSecret();
 
   String getToken();
 
   String getAesKey();
-
-  long getExpiresTime();
 
   String getHttpProxyHost();
 
@@ -75,7 +42,7 @@ public interface WxCpTpConfigStorage {
 
   String getHttpProxyPassword();
 
-  File getTmpDirFile();
+  public File getTmpDirFile();
 
   /**
    * http client builder.
@@ -89,5 +56,19 @@ public interface WxCpTpConfigStorage {
    * @return .
    */
   boolean autoRefreshToken();
+
+  /**
+   * 服务商的token
+   * @return
+   */
+  String getProviderToken();
+
+  boolean isProviderTokenExpired();
+
+  void expireProviderToken();
+
+  void updateProviderToken(WxCpProviderToken wxCpProviderToken);
+
+  void updateProviderToken(String providerAccessToken, int expiresIn);
 
 }

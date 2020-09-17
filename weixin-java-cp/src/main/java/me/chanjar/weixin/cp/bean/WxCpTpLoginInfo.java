@@ -1,19 +1,18 @@
 package me.chanjar.weixin.cp.bean;
 
 import com.google.gson.annotations.SerializedName;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import me.chanjar.weixin.cp.util.json.WxCpGsonBuilder;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**
  * 获取登录用户信息
  * @author huangxiaoming
  */
-@Data
+@Getter
+@Setter
 public class WxCpTpLoginInfo extends WxCpBaseResp {
 
   private static final long serialVersionUID = -5028321625140879571L;

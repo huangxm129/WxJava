@@ -9,4 +9,6 @@ package me.chanjar.weixin.cp.api.impl;
  * @author zhenjun cai
  */
 public class WxCpTpServiceImpl extends WxCpTpServiceApacheHttpClientImpl {
+
+
 }
