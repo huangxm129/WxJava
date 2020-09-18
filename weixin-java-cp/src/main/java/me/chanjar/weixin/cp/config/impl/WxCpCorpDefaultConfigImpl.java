@@ -8,11 +8,7 @@ import me.chanjar.weixin.cp.util.json.WxCpGsonBuilder;
 import java.io.File;
 import java.io.Serializable;
 
-/**
- * 基于内存的微信配置provider，在实际生产环境中应该将这些配置持久化.
- *
- * @author someone
- */
+
 public class WxCpCorpDefaultConfigImpl implements WxCpCorpConfigStorage, Serializable {
   private static final long serialVersionUID = 6678780920621872824L;
 

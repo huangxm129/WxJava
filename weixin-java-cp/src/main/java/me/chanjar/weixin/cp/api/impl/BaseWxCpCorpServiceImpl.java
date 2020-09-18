@@ -121,10 +121,10 @@ public abstract class BaseWxCpCorpServiceImpl<H, P> implements WxCpCorpService, 
       WxError error = e.getError();
       /*
        * 发生以下情况时尝试刷新suite_access_token
-       * 42009 suite_access_token已过期
+       * 40014 invalid access_token已过期
        */
-      if (error.getErrorCode() == WxCpErrorMsgEnum.CODE_42009.getCode()) {
-        // 强制设置wxCpTpConfigStorage它的suite access token过期了，这样在下一次请求里就会刷新suite access token
+      if (error.getErrorCode() == WxCpErrorMsgEnum.CODE_40014.getCode()) {
+        // 强制设置toekn过期了，这样在下一次请求里就会刷新access token
         this.configStorage.getProviderToken();
         if (this.getWxCpCorpConfigStorage().autoRefreshToken()) {
           log.warn("即将重新获取新的access_token，错误代码：{}，错误信息：{}", error.getErrorCode(), error.getErrorMsg());
