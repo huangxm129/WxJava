@@ -1,7 +1,8 @@
-package me.chanjar.weixin.cp.api;
+package me.chanjar.weixin.cp.tp.service;
 
 import me.chanjar.weixin.common.bean.WxAccessToken;
 import me.chanjar.weixin.common.error.WxErrorException;
+import me.chanjar.weixin.common.session.WxSessionManager;
 import me.chanjar.weixin.common.util.http.MediaUploadRequestExecutor;
 import me.chanjar.weixin.common.util.http.RequestExecutor;
 import me.chanjar.weixin.common.util.http.RequestHttp;
@@ -9,7 +10,7 @@ import me.chanjar.weixin.cp.bean.*;
 import me.chanjar.weixin.cp.config.WxCpTpConfigStorage;
 
 /**
- * 微信第三方应用API的Service.
+ * 企业微信第三方应用API的Service.
  *
  * @author zhenjun cai
  */
@@ -24,13 +25,16 @@ public interface WxCpTpService {
    * @param timestamp    时间戳
    * @param nonce        随机数
    * @param data         微信传输过来的数据，有可能是echoStr，有可能是xml消息
+   * @return the boolean
    */
   boolean checkSignature(String msgSignature, String timestamp, String nonce, String data);
 
   /**
    * 获取suite_access_token, 不强制刷新suite_access_token
    *
-   * @see #getSuiteAccessToken(boolean)
+   * @return the suite access token
+   * @throws WxErrorException the wx error exception
+   * @see #getSuiteAccessToken(boolean) #getSuiteAccessToken(boolean)
    */
   String getSuiteAccessToken() throws WxErrorException;
 
@@ -44,13 +48,17 @@ public interface WxCpTpService {
    * </pre>
    *
    * @param forceRefresh 强制刷新
+   * @return the suite access token
+   * @throws WxErrorException the wx error exception
    */
   String getSuiteAccessToken(boolean forceRefresh) throws WxErrorException;
 
   /**
    * 获得suite_ticket,不强制刷新suite_ticket
    *
-   * @see #getSuiteTicket(boolean)
+   * @return the suite ticket
+   * @throws WxErrorException the wx error exception
+   * @see #getSuiteTicket(boolean) #getSuiteTicket(boolean)
    */
   String getSuiteTicket() throws WxErrorException;
 
@@ -63,6 +71,8 @@ public interface WxCpTpService {
    * </pre>
    *
    * @param forceRefresh 强制刷新
+   * @return the suite ticket
+   * @throws WxErrorException the wx error exception
    */
   String getSuiteTicket(boolean forceRefresh) throws WxErrorException;
 
@@ -70,6 +80,8 @@ public interface WxCpTpService {
    * 小程序登录凭证校验
    *
    * @param jsCode 登录时获取的 code
+   * @return the wx cp ma js code 2 session result
+   * @throws WxErrorException the wx error exception
    */
   WxCpMaJsCode2SessionResult jsCode2Session(String jsCode) throws WxErrorException;
 
@@ -78,6 +90,8 @@ public interface WxCpTpService {
    *
    * @param authCorpid    授权方corpid
    * @param permanentCode 永久授权码，通过get_permanent_code获取
+   * @return the corp token
+   * @throws WxErrorException the wx error exception
    */
   WxAccessToken getCorpToken(String authCorpid, String permanentCode) throws WxErrorException;
 
@@ -85,7 +99,8 @@ public interface WxCpTpService {
    * 获取企业永久授权码 .
    *
    * @param authCode .
-   * @return .
+   * @return . permanent code
+   * @throws WxErrorException the wx error exception
    */
   @Deprecated
   WxCpTpCorp getPermanentCode(String authCode) throws WxErrorException;
@@ -96,13 +111,11 @@ public interface WxCpTpService {
    *   原来的方法实现不全
    * </pre>
    *
-   * @param authCode
-   * @return
-   *
+   * @param authCode the auth code
+   * @return permanent code info
+   * @throws WxErrorException the wx error exception
    * @author yuan
-   * @since 2020-03-18
-   *
-   * @throws WxErrorException
+   * @since 2020 -03-18
    */
   WxCpTpPermanentCodeInfo getPermanentCodeInfo(String authCode) throws WxErrorException;
 
@@ -110,28 +123,31 @@ public interface WxCpTpService {
    * <pre>
    *   获取预授权链接
    * </pre>
+   *
    * @param redirectUri 授权完成后的回调网址
-   * @param state a-zA-Z0-9的参数值（不超过128个字节），用于第三方自行校验session，防止跨域攻击
-   * @return
-   * @throws WxErrorException
+   * @param state       a-zA-Z0-9的参数值（不超过128个字节），用于第三方自行校验session，防止跨域攻击
+   * @return pre auth url
+   * @throws WxErrorException the wx error exception
    */
-  String getPreAuthUrl(String redirectUri,String state) throws WxErrorException;
+  String getPreAuthUrl(String redirectUri, String state) throws WxErrorException;
 
   /**
    * 获取企业的授权信息
    *
-   * @param authCorpId 授权企业的corpId
+   * @param authCorpId    授权企业的corpId
    * @param permanentCode 授权企业的永久授权码
-   * @return
-   * @throws WxErrorException
+   * @return auth info
+   * @throws WxErrorException the wx error exception
    */
-  WxCpTpAuthInfo getAuthInfo(String authCorpId,String permanentCode) throws WxErrorException;
+  WxCpTpAuthInfo getAuthInfo(String authCorpId, String permanentCode) throws WxErrorException;
 
   /**
    * 当本Service没有实现某个API的时候，可以用这个，针对所有微信API中的GET请求.
    *
    * @param url        接口地址
    * @param queryParam 请求参数
+   * @return the string
+   * @throws WxErrorException the wx error exception
    */
   String get(String url, String queryParam) throws WxErrorException;
 
@@ -140,6 +156,8 @@ public interface WxCpTpService {
    *
    * @param url      接口地址
    * @param postData 请求body字符串
+   * @return the string
+   * @throws WxErrorException the wx error exception
    */
   String post(String url, String postData) throws WxErrorException;
 
@@ -150,11 +168,13 @@ public interface WxCpTpService {
    * 可以参考，{@link MediaUploadRequestExecutor}的实现方法
    * </pre>
    *
+   * @param <T>      请求值类型
+   * @param <E>      返回值类型
    * @param executor 执行器
    * @param uri      请求地址
    * @param data     参数
-   * @param <T>      请求值类型
-   * @param <E>      返回值类型
+   * @return the t
+   * @throws WxErrorException the wx error exception
    */
   <T, E> T execute(RequestExecutor<T, E> executor, String uri, E data) throws WxErrorException;
 
@@ -186,7 +206,7 @@ public interface WxCpTpService {
   /**
    * 获取WxMpConfigStorage 对象.
    *
-   * @return WxMpConfigStorage
+   * @return WxMpConfigStorage wx cp tp config storage
    */
   WxCpTpConfigStorage getWxCpTpConfigStorage();
 
@@ -199,10 +219,13 @@ public interface WxCpTpService {
 
   /**
    * http请求对象.
+   *
+   * @return the request http
    */
   RequestHttp<?, ?> getRequestHttp();
 
   /**
+<<<<<<< HEAD:weixin-java-cp/src/main/java/me/chanjar/weixin/cp/api/WxCpTpService.java
    * 获取访问用户身份
    * @param code
    * @return
@@ -216,4 +239,11 @@ public interface WxCpTpService {
    */
   WxCpTpUserDetail getuserdetail3rd(String userTicket) throws WxErrorException;
 
+=======
+   * 获取WxSessionManager 对象
+   *
+   * @return WxSessionManager session manager
+   */
+  WxSessionManager getSessionManager();
+>>>>>>> parnet/develop:weixin-java-cp/src/main/java/me/chanjar/weixin/cp/tp/service/WxCpTpService.java
 }
