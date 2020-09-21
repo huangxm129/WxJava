@@ -225,7 +225,6 @@ public interface WxCpTpService {
   RequestHttp<?, ?> getRequestHttp();
 
   /**
-<<<<<<< HEAD:weixin-java-cp/src/main/java/me/chanjar/weixin/cp/api/WxCpTpService.java
    * 获取访问用户身份
    * @param code
    * @return
@@ -239,11 +238,9 @@ public interface WxCpTpService {
    */
   WxCpTpUserDetail getuserdetail3rd(String userTicket) throws WxErrorException;
 
-=======
+  /**
    * 获取WxSessionManager 对象
-   *
    * @return WxSessionManager session manager
    */
   WxSessionManager getSessionManager();
->>>>>>> parnet/develop:weixin-java-cp/src/main/java/me/chanjar/weixin/cp/tp/service/WxCpTpService.java
 }

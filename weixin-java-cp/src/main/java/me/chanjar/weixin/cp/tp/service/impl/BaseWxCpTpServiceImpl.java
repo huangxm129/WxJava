@@ -279,7 +279,6 @@ public abstract class BaseWxCpTpServiceImpl<H, P> implements WxCpTpService, Requ
   }
 
   @Override
-<<<<<<< HEAD:weixin-java-cp/src/main/java/me/chanjar/weixin/cp/api/impl/BaseWxCpTpServiceImpl.java
   public WxCpTpUserInfo getuserinfo3rd(String code) throws WxErrorException{
 
     JsonObject parms = new JsonObject();
@@ -302,11 +301,7 @@ public abstract class BaseWxCpTpServiceImpl<H, P> implements WxCpTpService, Requ
     return WxCpTpUserDetail.fromJson(result);
   }
 
-
-=======
   public WxSessionManager getSessionManager() {
     return this.sessionManager;
   }
-
->>>>>>> parnet/develop:weixin-java-cp/src/main/java/me/chanjar/weixin/cp/tp/service/impl/BaseWxCpTpServiceImpl.java
 }

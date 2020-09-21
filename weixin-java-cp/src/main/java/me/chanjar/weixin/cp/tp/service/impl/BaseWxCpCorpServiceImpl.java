@@ -1,37 +1,24 @@
-package me.chanjar.weixin.cp.api.impl;
+package me.chanjar.weixin.cp.tp.service.impl;
 
-import com.google.common.base.Joiner;
 import com.google.gson.JsonObject;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import me.chanjar.weixin.common.bean.WxAccessToken;
 import me.chanjar.weixin.common.enums.WxType;
 import me.chanjar.weixin.common.error.WxCpErrorMsgEnum;
 import me.chanjar.weixin.common.error.WxError;
 import me.chanjar.weixin.common.error.WxErrorException;
 import me.chanjar.weixin.common.util.DataUtils;
-import me.chanjar.weixin.common.util.crypto.SHA1;
 import me.chanjar.weixin.common.util.http.RequestExecutor;
 import me.chanjar.weixin.common.util.http.RequestHttp;
 import me.chanjar.weixin.common.util.http.SimpleGetRequestExecutor;
 import me.chanjar.weixin.common.util.http.SimplePostRequestExecutor;
-import me.chanjar.weixin.common.util.json.GsonParser;
-import me.chanjar.weixin.cp.api.WxCpCorpService;
-import me.chanjar.weixin.cp.api.WxCpTpService;
-import me.chanjar.weixin.cp.bean.*;
+import me.chanjar.weixin.cp.tp.service.WxCpCorpService;
+import me.chanjar.weixin.cp.bean.WxCpTpLoginInfo;
 import me.chanjar.weixin.cp.config.WxCpCorpConfigStorage;
-import me.chanjar.weixin.cp.config.WxCpTpConfigStorage;
-import me.chanjar.weixin.cp.constant.WxCpApiPathConsts;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.http.client.methods.HttpPost;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URLEncoder;
-import java.util.HashMap;
-import java.util.Map;
 
-import static me.chanjar.weixin.cp.constant.WxCpApiPathConsts.Tp.*;
+import static me.chanjar.weixin.cp.constant.WxCpApiPathConsts.Tp.GET_LOGIN_INFO;
 
 /**
  *

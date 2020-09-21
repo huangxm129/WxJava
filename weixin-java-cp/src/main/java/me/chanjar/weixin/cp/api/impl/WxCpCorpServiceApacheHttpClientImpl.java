@@ -11,6 +11,7 @@ import me.chanjar.weixin.common.util.http.apache.DefaultApacheHttpClientBuilder;
 import me.chanjar.weixin.common.util.json.GsonParser;
 import me.chanjar.weixin.cp.config.WxCpCorpConfigStorage;
 import me.chanjar.weixin.cp.constant.WxCpApiPathConsts;
+import me.chanjar.weixin.cp.tp.service.impl.BaseWxCpCorpServiceImpl;
 import org.apache.http.Consts;
 import org.apache.http.HttpHost;
 import org.apache.http.client.config.RequestConfig;
