@@ -55,6 +55,13 @@ public final class WxCpApiPathConsts {
   }
 
   @UtilityClass
+  public static class WorkBench {
+    public static final String WORKBENCH_TEMPLATE_SET = "/cgi-bin/agent/set_workbench_template";
+    public static final String WORKBENCH_TEMPLATE_GET = "/cgi-bin/agent/get_workbench_template";
+    public static final String WORKBENCH_DATA_SET = "/cgi-bin/agent/set_workbench_data";
+  }
+
+  @UtilityClass
   public static class OAuth2 {
     public static final String GET_USER_INFO = "/cgi-bin/user/getuserinfo?code=%s&agentid=%d";
     public static final String GET_USER_DETAIL = "/cgi-bin/user/getuserdetail";
@@ -167,6 +174,7 @@ public final class WxCpApiPathConsts {
     public static final String CLOSE_TEMP_CHAT = "/cgi-bin/externalcontact/close_temp_chat";
     public static final String GET_FOLLOW_USER_LIST = "/cgi-bin/externalcontact/get_follow_user_list";
     public static final String GET_CONTACT_DETAIL = "/cgi-bin/externalcontact/get?external_userid=";
+    public static final String GET_CONTACT_DETAIL_BATCH = "/cgi-bin/externalcontact/batch/get_by_user?";
     public static final String UPDATE_REMARK = "/cgi-bin/externalcontact/remark";
     public static final String LIST_EXTERNAL_CONTACT = "/cgi-bin/externalcontact/list?userid=";
     public static final String LIST_UNASSIGNED_CONTACT = "/cgi-bin/externalcontact/get_unassigned_list";

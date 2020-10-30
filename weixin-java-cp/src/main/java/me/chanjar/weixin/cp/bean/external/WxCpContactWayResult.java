@@ -12,10 +12,17 @@ import me.chanjar.weixin.cp.util.json.WxCpGsonBuilder;
 public class WxCpContactWayResult extends WxCpBaseResp {
   @SerializedName("config_id")
   private String configId;
+<<<<<<< HEAD
 
   @SerializedName("qr_code")
   private String qrCode;
 
+=======
+  
+  @SerializedName("qr_code")
+  private String qrCode;
+  
+>>>>>>> parnet/develop
   public static WxCpContactWayResult fromJson(String json) {
     return WxCpGsonBuilder.create().fromJson(json, WxCpContactWayResult.class);
   }

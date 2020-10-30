@@ -42,6 +42,11 @@ public class WxMpProperties {
   private String aesKey;
 
   /**
+   * 自定义host配置
+   */
+  private HostConfig hosts;
+
+  /**
    * 存储策略
    */
   private ConfigStorage configStorage = new ConfigStorage();
