@@ -139,6 +139,12 @@ public class WxCpConsts {
      * 新增外部联系人
      */
     public static final String ADD_EXTERNAL_CONTACT = "add_external_contact";
+
+    /**
+     * 编辑外部联系人事件
+     */
+    public static final String EDIT_EXTERNAL_CONTACT = "edit_external_contact";
+
     /**
      * 删除外部联系人
      */
@@ -152,6 +158,11 @@ public class WxCpConsts {
      * 删除跟进成员事件
      */
     public static final String DEL_FOLLOW_USER = "del_follow_user";
+
+    /**
+     * 客户接替失败事件
+     */
+    public static final String TRANSFER_FAIL = "transfer_fail";
   }
 
   /**

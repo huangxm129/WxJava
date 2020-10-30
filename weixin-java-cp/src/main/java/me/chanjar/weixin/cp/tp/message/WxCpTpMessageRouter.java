@@ -9,6 +9,7 @@ import me.chanjar.weixin.common.session.InternalSession;
 import me.chanjar.weixin.common.session.InternalSessionManager;
 import me.chanjar.weixin.common.session.WxSessionManager;
 import me.chanjar.weixin.common.util.LogExceptionHandler;
+import me.chanjar.weixin.cp.bean.message.WxCpTpXmlMessage;
 import me.chanjar.weixin.cp.bean.message.WxCpXmlMessage;
 import me.chanjar.weixin.cp.bean.message.WxCpXmlOutMessage;
 import me.chanjar.weixin.cp.message.WxCpMessageRouterRule;
@@ -131,7 +132,7 @@ public class WxCpTpMessageRouter {
   /**
    * 处理微信消息.
    */
-  public WxCpXmlOutMessage route(final WxCpXmlMessage wxMessage, final Map<String, Object> context) {
+  public WxCpXmlOutMessage route(final WxCpTpXmlMessage wxMessage, final Map<String, Object> context) {
     if (isMsgDuplicated(wxMessage)) {
       // 如果是重复消息，那么就不做处理
       return null;
@@ -165,7 +166,13 @@ public class WxCpTpMessageRouter {
       } else {
         res = rule.service(wxMessage, context, this.wxCpService, this.sessionManager, this.exceptionHandler);
         // 在同步操作结束，session访问结束
-        log.debug("End session access: async=false, sessionId={}", wxMessage.getFromUserName());
+
+        log.debug("End session access: async=false, sessionId={}", wxMessage.getTimeStamp()
+          .concat(StringUtils.trimToEmpty(wxMessage.getAuthCorpId()))
+          .concat(wxMessage.getSuiteId()).concat(wxMessage.getInfoType())
+          .concat(StringUtils.trimToEmpty(wxMessage.getChangeType()))
+          //.concat(StringUtils.trimToEmpty(wxMessage.getFromUserName()))
+        );
         sessionEndAccess(wxMessage);
       }
     }
@@ -175,7 +182,13 @@ public class WxCpTpMessageRouter {
         for (Future future : futures) {
           try {
             future.get();
-            log.debug("End session access: async=true, sessionId={}", wxMessage.getFromUserName());
+            log.debug("End session access: async=true, sessionId={}", wxMessage.getTimeStamp()
+              .concat(StringUtils.trimToEmpty(wxMessage.getAuthCorpId()))
+              .concat(wxMessage.getSuiteId())
+              .concat(wxMessage.getInfoType())
+              .concat(StringUtils.trimToEmpty(wxMessage.getChangeType()))
+              //.concat(StringUtils.trimToEmpty(wxMessage.getFromUserName()))
+            );
             // 异步操作结束，session访问结束
             sessionEndAccess(wxMessage);
           } catch (InterruptedException e) {
@@ -193,40 +206,60 @@ public class WxCpTpMessageRouter {
   /**
    * 处理微信消息.
    */
-  public WxCpXmlOutMessage route(final WxCpXmlMessage wxMessage) {
+  public WxCpXmlOutMessage route(final WxCpTpXmlMessage wxMessage) {
     return this.route(wxMessage, new HashMap<>(2));
   }
 
-  private boolean isMsgDuplicated(WxCpXmlMessage wxMessage) {
+  private boolean isMsgDuplicated(WxCpTpXmlMessage wxMessage) {
     StringBuilder messageId = new StringBuilder();
-    if (wxMessage.getMsgId() == null) {
-      messageId.append(wxMessage.getCreateTime())
-        .append("-").append(StringUtils.trimToEmpty(String.valueOf(wxMessage.getAgentId())))
-        .append("-").append(wxMessage.getFromUserName())
-        .append("-").append(StringUtils.trimToEmpty(wxMessage.getEventKey()))
-        .append("-").append(StringUtils.trimToEmpty(wxMessage.getEvent()));
-    } else {
-      messageId.append(wxMessage.getMsgId())
-        .append("-").append(wxMessage.getCreateTime())
-        .append("-").append(wxMessage.getFromUserName());
-    }
 
-    if (StringUtils.isNotEmpty(wxMessage.getUserId())) {
-      messageId.append("-").append(wxMessage.getUserId());
+    if(StringUtils.isNotEmpty(wxMessage.getAuthCorpId())){
+      messageId.append("-").append(wxMessage.getAuthCorpId());
     }
-
-    if (StringUtils.isNotEmpty(wxMessage.getChangeType())) {
+    if(StringUtils.isNotEmpty(wxMessage.getSuiteId())){
+      messageId.append("-").append(wxMessage.getSuiteId());
+    }
+    if(StringUtils.isNotEmpty(wxMessage.getInfoType())){
+      messageId.append("-").append(wxMessage.getInfoType());
+    }
+    if(StringUtils.isNotEmpty(wxMessage.getChangeType())){
       messageId.append("-").append(wxMessage.getChangeType());
     }
+
+//    if(wxMessage.getAgentId() != null){
+//      messageId.append("-").append(wxMessage.getAgentId());
+//    }
+
+//    if(StringUtils.isNotEmpty(wxMessage.getEvent())){
+//      messageId.append("-").append(wxMessage.getEvent());
+//    }
+
+//    if(StringUtils.isNotEmpty(wxMessage.getFromUserName())){
+//      messageId.append("-").append(wxMessage.getFromUserName());
+//    }
+
+//    if (StringUtils.isNotEmpty(wxMessage.getUserId())) {
+//      messageId.append("-").append(wxMessage.getUserId());
+//    }
+//
+//    if (wxMessage.getCreateTime() != null) {
+//      messageId.append("-").append(wxMessage.getCreateTime());
+//    }
 
     return this.messageDuplicateChecker.isDuplicate(messageId.toString());
   }
 
   /**
-   * 对session的访问结束.
+   *对session的访问结束.
    */
-  private void sessionEndAccess(WxCpXmlMessage wxMessage) {
-    InternalSession session = ((InternalSessionManager) this.sessionManager).findSession(wxMessage.getFromUserName());
+  private void sessionEndAccess(WxCpTpXmlMessage wxMessage) {
+    InternalSession session = ((InternalSessionManager) this.sessionManager).findSession(wxMessage.getTimeStamp()
+      .concat(StringUtils.trimToEmpty(wxMessage.getAuthCorpId()))
+      .concat(wxMessage.getSuiteId())
+      .concat(wxMessage.getInfoType())
+      .concat(StringUtils.trimToEmpty(wxMessage.getChangeType()))
+      //.concat(StringUtils.trimToEmpty(wxMessage.getFromUserName()))
+    );
     if (session != null) {
       session.endAccess();
     }

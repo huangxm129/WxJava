@@ -280,24 +280,20 @@ public abstract class BaseWxCpTpServiceImpl<H, P> implements WxCpTpService, Requ
 
   @Override
   public WxCpTpUserInfo getuserinfo3rd(String code) throws WxErrorException{
-
-    JsonObject parms = new JsonObject();
-    parms.addProperty("code", code);
-
+    log.info("parm:{}",code);
     String url = configStorage.getApiUrl(GET_USERINFO3RD);
-    if (StringUtils.isNotBlank(code)) {
-      url += "?code=" + code;
-    }
-    String result = get(url,null);
+    String result = get(url+"?code="+code,null);
+    log.info("result:{}",result);
     return WxCpTpUserInfo.fromJson(result);
   }
 
   @Override
   public WxCpTpUserDetail getuserdetail3rd(String userTicket) throws WxErrorException{
-
+    log.info("parm:{}",userTicket);
     JsonObject jsonObject = new JsonObject();
     jsonObject.addProperty("user_ticket", userTicket);
     String result = post(configStorage.getApiUrl(GET_USERDETAIL3RD), jsonObject.toString());
+    log.info("parm:{}",result);
     return WxCpTpUserDetail.fromJson(result);
   }
 

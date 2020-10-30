@@ -13,6 +13,9 @@ public class WxCpContactWayResult extends WxCpBaseResp {
   @SerializedName("config_id")
   private String configId;
 
+  @SerializedName("qr_code")
+  private String qrCode;
+
   public static WxCpContactWayResult fromJson(String json) {
     return WxCpGsonBuilder.create().fromJson(json, WxCpContactWayResult.class);
   }

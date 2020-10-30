@@ -20,7 +20,7 @@ import me.chanjar.weixin.cp.util.xml.XStreamTransformer;
 @XStreamAlias("xml")
 @Slf4j
 @Data
-public class WxCpTpXmlMessage implements Serializable {
+public class WxCpTpXmlMessage implements Serializable{
 
   private static final long serialVersionUID = 6031833682211475786L;
   /**
@@ -35,6 +35,10 @@ public class WxCpTpXmlMessage implements Serializable {
   @XStreamAlias("InfoType")
   @XStreamConverter(value = XStreamCDataConverter.class)
   protected String infoType;
+
+  @XStreamAlias("ChangeType")
+  @XStreamConverter(value = XStreamCDataConverter.class)
+  protected String changeType;
 
   @XStreamAlias("TimeStamp")
   @XStreamConverter(value = XStreamCDataConverter.class)

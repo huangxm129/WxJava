@@ -90,4 +90,6 @@ public interface WxCpTpConfigStorage {
    */
   boolean autoRefreshToken();
 
+  public String getOauth2redirectUri();
+
 }

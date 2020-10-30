@@ -196,6 +196,11 @@ public class WxCpTpDefaultConfigImpl implements WxCpTpConfigStorage, Serializabl
   }
 
   @Override
+  public String getOauth2redirectUri() {
+    return this.oauth2redirectUri;
+  }
+
+  @Override
   public String getHttpProxyHost() {
     return this.httpProxyHost;
   }
