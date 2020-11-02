@@ -5,16 +5,10 @@ import me.chanjar.weixin.common.api.WxErrorExceptionHandler;
 import me.chanjar.weixin.common.error.WxErrorException;
 import me.chanjar.weixin.common.session.WxSessionManager;
 import me.chanjar.weixin.cp.bean.message.WxCpTpXmlMessage;
-import me.chanjar.weixin.cp.bean.message.WxCpTpXmlOutMessage;
-import me.chanjar.weixin.cp.bean.message.WxCpXmlMessage;
 import me.chanjar.weixin.cp.bean.message.WxCpXmlOutMessage;
-import me.chanjar.weixin.cp.message.WxCpMessageMatcher;
-import me.chanjar.weixin.cp.message.WxCpMessageRouterRule;
 import me.chanjar.weixin.cp.tp.service.WxCpTpService;
-import org.apache.commons.lang3.StringUtils;
 
 import java.util.*;
-import java.util.regex.Pattern;
 
 /**
  * The type Wx cp message router rule.
@@ -344,7 +338,7 @@ public class WxCpTpMessageRouterRule {
    * @param exceptionHandler the exception handler
    * @return true 代表继续执行别的router，false 代表停止执别的router
    */
-  protected WxCpTpXmlOutMessage service(WxCpTpXmlMessage wxMessage,
+  protected WxCpXmlOutMessage service(WxCpTpXmlMessage wxMessage,
                                         Map<String, Object> context,
                                         WxCpTpService wxCpService,
                                         WxSessionManager sessionManager,
@@ -363,7 +357,7 @@ public class WxCpTpMessageRouterRule {
       }
 
       // 交给handler处理
-      WxCpTpXmlOutMessage res = null;
+      WxCpXmlOutMessage res = null;
       for (WxCpTpMessageHandler handler : this.handlers) {
         // 返回最后handler的结果
         res = handler.handle(wxMessage, context, wxCpService, sessionManager);

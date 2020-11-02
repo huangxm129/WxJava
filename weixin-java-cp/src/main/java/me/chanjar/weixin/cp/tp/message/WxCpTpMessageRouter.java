@@ -10,7 +10,6 @@ import me.chanjar.weixin.common.session.InternalSessionManager;
 import me.chanjar.weixin.common.session.WxSessionManager;
 import me.chanjar.weixin.common.util.LogExceptionHandler;
 import me.chanjar.weixin.cp.bean.message.WxCpTpXmlMessage;
-import me.chanjar.weixin.cp.bean.message.WxCpXmlMessage;
 import me.chanjar.weixin.cp.bean.message.WxCpXmlOutMessage;
 import me.chanjar.weixin.cp.message.WxCpMessageRouterRule;
 import me.chanjar.weixin.cp.tp.service.WxCpTpService;
