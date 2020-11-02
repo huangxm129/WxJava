@@ -10,10 +10,7 @@ import me.chanjar.weixin.common.session.InternalSessionManager;
 import me.chanjar.weixin.common.session.WxSessionManager;
 import me.chanjar.weixin.common.util.LogExceptionHandler;
 import me.chanjar.weixin.cp.bean.message.WxCpTpXmlMessage;
-<<<<<<< HEAD
-=======
 import me.chanjar.weixin.cp.bean.message.WxCpXmlMessage;
->>>>>>> parnet/develop
 import me.chanjar.weixin.cp.bean.message.WxCpXmlOutMessage;
 import me.chanjar.weixin.cp.message.WxCpMessageRouterRule;
 import me.chanjar.weixin.cp.tp.service.WxCpTpService;
@@ -169,17 +166,7 @@ public class WxCpTpMessageRouter {
       } else {
         res = rule.service(wxMessage, context, this.wxCpService, this.sessionManager, this.exceptionHandler);
         // 在同步操作结束，session访问结束
-<<<<<<< HEAD
-
-        log.debug("End session access: async=false, sessionId={}", wxMessage.getTimeStamp()
-          .concat(StringUtils.trimToEmpty(wxMessage.getAuthCorpId()))
-          .concat(wxMessage.getSuiteId()).concat(wxMessage.getInfoType())
-          .concat(StringUtils.trimToEmpty(wxMessage.getChangeType()))
-          //.concat(StringUtils.trimToEmpty(wxMessage.getFromUserName()))
-        );
-=======
         log.debug("End session access: async=false, sessionId={}", wxMessage.getSuiteId());
->>>>>>> parnet/develop
         sessionEndAccess(wxMessage);
       }
     }
@@ -189,17 +176,7 @@ public class WxCpTpMessageRouter {
         for (Future future : futures) {
           try {
             future.get();
-<<<<<<< HEAD
-            log.debug("End session access: async=true, sessionId={}", wxMessage.getTimeStamp()
-              .concat(StringUtils.trimToEmpty(wxMessage.getAuthCorpId()))
-              .concat(wxMessage.getSuiteId())
-              .concat(wxMessage.getInfoType())
-              .concat(StringUtils.trimToEmpty(wxMessage.getChangeType()))
-              //.concat(StringUtils.trimToEmpty(wxMessage.getFromUserName()))
-            );
-=======
             log.debug("End session access: async=true, sessionId={}", wxMessage.getSuiteId());
->>>>>>> parnet/develop
             // 异步操作结束，session访问结束
             sessionEndAccess(wxMessage);
           } catch (InterruptedException e) {
@@ -223,20 +200,6 @@ public class WxCpTpMessageRouter {
 
   private boolean isMsgDuplicated(WxCpTpXmlMessage wxMessage) {
     StringBuilder messageId = new StringBuilder();
-<<<<<<< HEAD
-
-    if(StringUtils.isNotEmpty(wxMessage.getAuthCorpId())){
-      messageId.append("-").append(wxMessage.getAuthCorpId());
-    }
-    if(StringUtils.isNotEmpty(wxMessage.getSuiteId())){
-      messageId.append("-").append(wxMessage.getSuiteId());
-    }
-    if(StringUtils.isNotEmpty(wxMessage.getInfoType())){
-      messageId.append("-").append(wxMessage.getInfoType());
-    }
-    if(StringUtils.isNotEmpty(wxMessage.getChangeType())){
-      messageId.append("-").append(wxMessage.getChangeType());
-=======
     if (StringUtils.isNotEmpty(wxMessage.getSuiteId())) {
       messageId.append("-").append(wxMessage.getSuiteId());
     }
@@ -247,47 +210,16 @@ public class WxCpTpMessageRouter {
 
     if (StringUtils.isNotEmpty(wxMessage.getTimeStamp())) {
       messageId.append("-").append(wxMessage.getTimeStamp());
->>>>>>> parnet/develop
     }
-
-//    if(wxMessage.getAgentId() != null){
-//      messageId.append("-").append(wxMessage.getAgentId());
-//    }
-
-//    if(StringUtils.isNotEmpty(wxMessage.getEvent())){
-//      messageId.append("-").append(wxMessage.getEvent());
-//    }
-
-//    if(StringUtils.isNotEmpty(wxMessage.getFromUserName())){
-//      messageId.append("-").append(wxMessage.getFromUserName());
-//    }
-
-//    if (StringUtils.isNotEmpty(wxMessage.getUserId())) {
-//      messageId.append("-").append(wxMessage.getUserId());
-//    }
-//
-//    if (wxMessage.getCreateTime() != null) {
-//      messageId.append("-").append(wxMessage.getCreateTime());
-//    }
 
     return this.messageDuplicateChecker.isDuplicate(messageId.toString());
   }
 
   /**
-   *对session的访问结束.
+   * 对session的访问结束.
    */
   private void sessionEndAccess(WxCpTpXmlMessage wxMessage) {
-<<<<<<< HEAD
-    InternalSession session = ((InternalSessionManager) this.sessionManager).findSession(wxMessage.getTimeStamp()
-      .concat(StringUtils.trimToEmpty(wxMessage.getAuthCorpId()))
-      .concat(wxMessage.getSuiteId())
-      .concat(wxMessage.getInfoType())
-      .concat(StringUtils.trimToEmpty(wxMessage.getChangeType()))
-      //.concat(StringUtils.trimToEmpty(wxMessage.getFromUserName()))
-    );
-=======
     InternalSession session = ((InternalSessionManager) this.sessionManager).findSession(wxMessage.getSuiteId());
->>>>>>> parnet/develop
     if (session != null) {
       session.endAccess();
     }

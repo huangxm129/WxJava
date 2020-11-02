@@ -5,14 +5,14 @@ import me.chanjar.weixin.common.api.WxErrorExceptionHandler;
 import me.chanjar.weixin.common.error.WxErrorException;
 import me.chanjar.weixin.common.session.WxSessionManager;
 import me.chanjar.weixin.cp.bean.message.WxCpTpXmlMessage;
-<<<<<<< HEAD
-=======
 import me.chanjar.weixin.cp.bean.message.WxCpXmlMessage;
->>>>>>> parnet/develop
 import me.chanjar.weixin.cp.bean.message.WxCpXmlOutMessage;
+import me.chanjar.weixin.cp.message.WxCpMessageMatcher;
 import me.chanjar.weixin.cp.tp.service.WxCpTpService;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.*;
+import java.util.regex.Pattern;
 
 /**
  * The type Wx cp message router rule.
@@ -25,42 +25,10 @@ public class WxCpTpMessageRouterRule {
 
   private boolean async = true;
 
-<<<<<<< HEAD
-  private String fromUser;
-
-  private String authCorpId;
-
-  private String suiteId;
-
-  private String infoType;
-
-  private String changeType;
-
-  private String msgType;
-
-  private String event;
-
-  private String eventKey;
-
-  private String eventKeyRegex;
-
-  private String content;
-
-  private String rContent;
-
-  private Integer agentId;
-
-  private WxCpTpMessageMatcher matcher;
-
-  private boolean reEnter = false;
-
-
-=======
   private WxCpMessageMatcher matcher;
 
   private boolean reEnter = false;
 
->>>>>>> parnet/develop
   private List<WxCpTpMessageHandler> handlers = new ArrayList<>();
 
   private List<WxCpTpMessageInterceptor> interceptors = new ArrayList<>();
@@ -78,7 +46,6 @@ public class WxCpTpMessageRouterRule {
     this.routerBuilder = routerBuilder;
   }
 
-
   /**
    * 设置是否异步执行，默认是true
    *
@@ -90,152 +57,13 @@ public class WxCpTpMessageRouterRule {
     return this;
   }
 
-
-
   /**
-   * 如果authCorpId匹配
-   *
-   * @param authCorpId the authCorpId id
-   * @return the wx cp message router rule
-   */
-  public WxCpTpMessageRouterRule authCorpId(String authCorpId) {
-    this.authCorpId = authCorpId;
-    return this;
-  }
-
-
-  /**
-   * 如果suiteId匹配
-   *
-   * @param suiteId the suiteId id
-   * @return the wx cp message router rule
-   */
-  public WxCpTpMessageRouterRule suiteId(String suiteId) {
-    this.suiteId = suiteId;
-    return this;
-  }
-
-  /**
-   * 如果infoType匹配
-   *
-   * @param infoType the msg infoType
-   * @return the wx cp message router rule
-   */
-  public WxCpTpMessageRouterRule infoType(String infoType) {
-    this.infoType = infoType;
-    return this;
-  }
-
-  /**
-   * 如果changeType匹配
-   *
-   * @param changeType the msg changeType
-   * @return the wx cp message router rule
-   */
-  public WxCpTpMessageRouterRule changeType(String changeType) {
-    this.changeType = changeType;
-    return this;
-  }
-
-  /**
-<<<<<<< HEAD
-   * 如果agentId匹配
-   *
-   * @param agentId the agent id
-   * @return the wx cp message router rule
-   */
-  public WxCpTpMessageRouterRule agentId(Integer agentId) {
-    this.agentId = agentId;
-    return this;
-  }
-
-
-  /**
-   * 如果msgType等于某值
-   *
-   * @param msgType the msg type
-   * @return the wx cp message router rule
-   */
-  public WxCpTpMessageRouterRule msgType(String msgType) {
-    this.msgType = msgType;
-    return this;
-  }
-
-  /**
-   * 如果event等于某值
-   *
-   * @param event the event
-   * @return the wx cp message router rule
-   */
-  public WxCpTpMessageRouterRule event(String event) {
-    this.event = event;
-    return this;
-  }
-
-  /**
-   * 如果eventKey等于某值
-   *
-   * @param eventKey the event key
-   * @return the wx cp message router rule
-   */
-  public WxCpTpMessageRouterRule eventKey(String eventKey) {
-    this.eventKey = eventKey;
-    return this;
-  }
-
-  /**
-   * 如果eventKey匹配该正则表达式
-   *
-   * @param regex the regex
-   * @return the wx cp message router rule
-   */
-  public WxCpTpMessageRouterRule eventKeyRegex(String regex) {
-    this.eventKeyRegex = regex;
-    return this;
-  }
-
-  /**
-   * 如果content等于某值
-   *
-   * @param content the content
-   * @return the wx cp message router rule
-   */
-  public WxCpTpMessageRouterRule content(String content) {
-    this.content = content;
-    return this;
-  }
-
-  /**
-   * 如果content匹配该正则表达式
-   *
-   * @param regex the regex
-   * @return the wx cp message router rule
-   */
-  public WxCpTpMessageRouterRule rContent(String regex) {
-    this.rContent = regex;
-    return this;
-  }
-
-  /**
-   * 如果fromUser等于某值
-   *
-   * @param fromUser the from user
-   * @return the wx cp message router rule
-   */
-  public WxCpTpMessageRouterRule fromUser(String fromUser) {
-    this.fromUser = fromUser;
-    return this;
-  }
-
-  /**
-=======
->>>>>>> parnet/develop
    * 如果消息匹配某个matcher，用在用户需要自定义更复杂的匹配规则的时候
    *
    * @param matcher the matcher
    * @return the wx cp message router rule
    */
-  public WxCpTpMessageRouterRule matcher(WxCpTpMessageMatcher matcher) {
+  public WxCpTpMessageRouterRule matcher(WxCpMessageMatcher matcher) {
     this.matcher = matcher;
     return this;
   }
@@ -318,34 +146,6 @@ public class WxCpTpMessageRouterRule {
    */
   protected boolean test(WxCpTpXmlMessage wxMessage) {
     return
-<<<<<<< HEAD
-        (this.authCorpId == null || this.authCorpId.equals(wxMessage.getAuthCorpId()))
-        &&
-        (this.suiteId == null || this.suiteId.equals(wxMessage.getSuiteId()))
-        &&
-        (this.infoType == null || this.infoType.equalsIgnoreCase(wxMessage.getInfoType()))
-        &&
-        (this.changeType == null || this.changeType.equalsIgnoreCase(wxMessage.getChangeType())
-       // &&
-       // (this.fromUser == null || this.fromUser.equals(wxMessage.getFromUserName()))
-       // &&
-       // (this.agentId == null || this.agentId.equals(wxMessage.getAgentId()))
-       // &&
-       // (this.msgType == null || this.msgType.equalsIgnoreCase(wxMessage.getMsgType()))
-        //&&
-        //(this.event == null || this.event.equalsIgnoreCase(wxMessage.getEvent()))
-        //&&
-        //(this.eventKey == null || this.eventKey.equalsIgnoreCase(wxMessage.getEventKey()))
-        //&&
-        //(this.eventKeyRegex == null || Pattern.matches(this.eventKeyRegex, StringUtils.trimToEmpty(wxMessage.getEventKey())))
-        //&&
-        //(this.content == null || this.content.equals(StringUtils.trimToNull(wxMessage.getContent())))
-        //&&
-        //(this.rContent == null || Pattern.matches(this.rContent, StringUtils.trimToEmpty(wxMessage.getContent())))
-        &&
-        (this.matcher == null || this.matcher.match(wxMessage))
-        );
-=======
       (this.suiteId == null || this.suiteId.equals(wxMessage.getSuiteId()))
         &&
         (this.infoType == null || this.infoType.equals(wxMessage.getInfoType()))
@@ -354,7 +154,6 @@ public class WxCpTpMessageRouterRule {
         &&
         (this.authCode == null || this.authCode.equalsIgnoreCase(wxMessage.getAuthCode()))
       ;
->>>>>>> parnet/develop
   }
 
   /**
@@ -365,21 +164,13 @@ public class WxCpTpMessageRouterRule {
    * @param wxCpService      the wx cp service
    * @param sessionManager   the session manager
    * @param exceptionHandler the exception handler
-   * @return true 代表继续执行别的router，false 代表停止执别的router
+   * @return true 代表继续执行别的router，false 代表停止执行别的router
    */
   protected WxCpXmlOutMessage service(WxCpTpXmlMessage wxMessage,
-<<<<<<< HEAD
-                                        Map<String, Object> context,
-                                        WxCpTpService wxCpService,
-                                        WxSessionManager sessionManager,
-                                        WxErrorExceptionHandler exceptionHandler) {
-
-=======
                                       Map<String, Object> context,
                                       WxCpTpService wxCpService,
                                       WxSessionManager sessionManager,
                                       WxErrorExceptionHandler exceptionHandler) {
->>>>>>> parnet/develop
     if (context == null) {
       context = new HashMap<>(2);
     }

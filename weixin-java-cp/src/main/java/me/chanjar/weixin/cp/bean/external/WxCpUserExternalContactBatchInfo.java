@@ -136,6 +136,10 @@ public class WxCpUserExternalContactBatchInfo extends WxCpBaseResp implements Se
     private String remarkCompany;
     @SerializedName("remark_mobiles")
     private String[] remarkMobiles;
+
+    @SerializedName("tag_id")
+    private String[] tagIds;
+
     private Tag[] tags;
     @SerializedName("remark_corp_name")
     private String remarkCorpName;
@@ -153,6 +157,7 @@ public class WxCpUserExternalContactBatchInfo extends WxCpBaseResp implements Se
   @Setter
   @Getter
   public static class Tag {
+
     @SerializedName("group_name")
     private String groupName;
     @SerializedName("tag_name")
