@@ -69,6 +69,15 @@ public class WxCpTpMessageRouterRule {
   }
 
   /**
+   *  匹配 Message infoType
+   * @param infoType
+   */
+  public WxCpTpMessageRouterRule infoType(String infoType) {
+    this.infoType = infoType;
+    return this;
+  }
+
+  /**
    * 设置微信消息拦截器
    *
    * @param interceptor the interceptor
