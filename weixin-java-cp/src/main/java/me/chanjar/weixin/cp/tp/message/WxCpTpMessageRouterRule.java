@@ -5,6 +5,10 @@ import me.chanjar.weixin.common.api.WxErrorExceptionHandler;
 import me.chanjar.weixin.common.error.WxErrorException;
 import me.chanjar.weixin.common.session.WxSessionManager;
 import me.chanjar.weixin.cp.bean.message.WxCpTpXmlMessage;
+<<<<<<< HEAD
+=======
+import me.chanjar.weixin.cp.bean.message.WxCpXmlMessage;
+>>>>>>> parnet/develop
 import me.chanjar.weixin.cp.bean.message.WxCpXmlOutMessage;
 import me.chanjar.weixin.cp.tp.service.WxCpTpService;
 
@@ -21,6 +25,7 @@ public class WxCpTpMessageRouterRule {
 
   private boolean async = true;
 
+<<<<<<< HEAD
   private String fromUser;
 
   private String authCorpId;
@@ -50,9 +55,19 @@ public class WxCpTpMessageRouterRule {
   private boolean reEnter = false;
 
 
+=======
+  private WxCpMessageMatcher matcher;
+
+  private boolean reEnter = false;
+
+>>>>>>> parnet/develop
   private List<WxCpTpMessageHandler> handlers = new ArrayList<>();
 
   private List<WxCpTpMessageInterceptor> interceptors = new ArrayList<>();
+  private String suiteId;
+  private String infoType;
+  private String authCode;
+  private String suiteTicket;
 
   /**
    * Instantiates a new Wx cp message router rule.
@@ -123,6 +138,7 @@ public class WxCpTpMessageRouterRule {
   }
 
   /**
+<<<<<<< HEAD
    * 如果agentId匹配
    *
    * @param agentId the agent id
@@ -212,6 +228,8 @@ public class WxCpTpMessageRouterRule {
   }
 
   /**
+=======
+>>>>>>> parnet/develop
    * 如果消息匹配某个matcher，用在用户需要自定义更复杂的匹配规则的时候
    *
    * @param matcher the matcher
@@ -300,6 +318,7 @@ public class WxCpTpMessageRouterRule {
    */
   protected boolean test(WxCpTpXmlMessage wxMessage) {
     return
+<<<<<<< HEAD
         (this.authCorpId == null || this.authCorpId.equals(wxMessage.getAuthCorpId()))
         &&
         (this.suiteId == null || this.suiteId.equals(wxMessage.getSuiteId()))
@@ -326,6 +345,16 @@ public class WxCpTpMessageRouterRule {
         &&
         (this.matcher == null || this.matcher.match(wxMessage))
         );
+=======
+      (this.suiteId == null || this.suiteId.equals(wxMessage.getSuiteId()))
+        &&
+        (this.infoType == null || this.infoType.equals(wxMessage.getInfoType()))
+        &&
+        (this.suiteTicket == null || this.suiteTicket.equalsIgnoreCase(wxMessage.getSuiteTicket()))
+        &&
+        (this.authCode == null || this.authCode.equalsIgnoreCase(wxMessage.getAuthCode()))
+      ;
+>>>>>>> parnet/develop
   }
 
   /**
@@ -339,11 +368,18 @@ public class WxCpTpMessageRouterRule {
    * @return true 代表继续执行别的router，false 代表停止执别的router
    */
   protected WxCpXmlOutMessage service(WxCpTpXmlMessage wxMessage,
+<<<<<<< HEAD
                                         Map<String, Object> context,
                                         WxCpTpService wxCpService,
                                         WxSessionManager sessionManager,
                                         WxErrorExceptionHandler exceptionHandler) {
 
+=======
+                                      Map<String, Object> context,
+                                      WxCpTpService wxCpService,
+                                      WxSessionManager sessionManager,
+                                      WxErrorExceptionHandler exceptionHandler) {
+>>>>>>> parnet/develop
     if (context == null) {
       context = new HashMap<>(2);
     }
