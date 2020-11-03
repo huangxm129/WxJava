@@ -11,7 +11,7 @@
 
   <artifactId>wx-java-cp-spring-boot-starter</artifactId>
   <name>WxJava - Spring Boot Starter for WxCp</name>
-  <description>微信支付开发的 Spring Boot Starter</description>
+  <description>企业微信开发的 Spring Boot Starter</description>
 
   <dependencies>
     <dependency>
