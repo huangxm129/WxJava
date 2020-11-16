@@ -60,10 +60,6 @@ public class WxCpTpXmlMessage implements Serializable{
   @XStreamConverter(value = XStreamCDataConverter.class)
   protected String authCorpId;
 
-  @XStreamAlias("ChangeType")
-  @XStreamConverter(value = XStreamCDataConverter.class)
-  protected String changeType;
-
   @XStreamAlias("UserID")
   @XStreamConverter(value = XStreamCDataConverter.class)
   protected String userID;

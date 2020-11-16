@@ -53,16 +53,9 @@ public class WxCpTpDefaultConfigImpl implements WxCpTpConfigStorage, Serializabl
 
   private volatile String baseApiUrl;
 
-<<<<<<< HEAD
   private volatile String providerToken;
 
   private volatile long providerTokenExpiresTime;
-
-
-
-
-=======
->>>>>>> parent/develop
 
   @Override
   public void setBaseApiUrl(String baseUrl) {
@@ -280,11 +273,6 @@ public class WxCpTpDefaultConfigImpl implements WxCpTpConfigStorage, Serializabl
 
   public void setOauth2redirectUri(String oauth2redirectUri) {
     this.oauth2redirectUri = oauth2redirectUri;
-  }
-
-  @Override
-  public String getOauth2redirectUri() {
-    return this.oauth2redirectUri;
   }
 
   @Override

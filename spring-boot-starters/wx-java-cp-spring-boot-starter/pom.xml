@@ -25,6 +25,12 @@
       <artifactId>redisson-spring-boot-starter</artifactId>
       <version>3.13.3</version>
     </dependency>
+    <dependency>
+      <groupId>com.github.binarywang</groupId>
+      <artifactId>weixin-java-cp</artifactId>
+      <version>3.9.9.B</version>
+      <scope>compile</scope>
+    </dependency>
 
   </dependencies>
 

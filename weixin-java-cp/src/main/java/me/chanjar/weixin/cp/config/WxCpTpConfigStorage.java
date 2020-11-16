@@ -91,15 +91,8 @@ public interface WxCpTpConfigStorage {
   String getHttpProxyUsername();
   String getHttpProxyPassword();
   ApacheHttpClientBuilder getApacheHttpClientBuilder();
-
   boolean autoRefreshToken();
-
-<<<<<<< HEAD
-  public String getOauth2redirectUri();
-=======
   // 毫无相关性的代码
   @Deprecated
   File getTmpDirFile();
->>>>>>> parent/develop
-
 }
