@@ -356,6 +356,15 @@ public abstract class BaseWxCpTpServiceImpl<H, P> implements WxCpTpService, Requ
     return WxCpTpUserDetail.fromJson(result);
   }
 
+  @Override
+  public WxCpTpAdmin getAdminList(String authCorpId,Integer agentId) throws WxErrorException{
+    JsonObject jsonObject = new JsonObject();
+    jsonObject.addProperty("auth_corpid", authCorpId);
+    jsonObject.addProperty("agentid", agentId);
+    String result = post(configStorage.getApiUrl(GET_ADMIN_LIST), jsonObject.toString());
+    return WxCpTpAdmin.fromJson(result);
+  }
+
   public WxSessionManager getSessionManager() {
     return this.sessionManager;
   }

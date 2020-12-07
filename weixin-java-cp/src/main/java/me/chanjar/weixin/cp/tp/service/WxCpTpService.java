@@ -276,4 +276,12 @@ public interface WxCpTpService {
    * @return WxSessionManager session manager
    */
   WxSessionManager getSessionManager();
+
+  /**
+   * 获取应用的管理员列表
+   * @param authCorpId
+   * @param agentId
+   * @return
+   */
+  WxCpTpAdmin getAdminList(String authCorpId,Integer agentId) throws WxErrorException;
 }

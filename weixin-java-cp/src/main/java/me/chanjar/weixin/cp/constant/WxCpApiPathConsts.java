@@ -145,6 +145,7 @@ public final class WxCpApiPathConsts {
     public static final String GET_LOGIN_INFO = "/cgi-bin/service/get_login_info";
     public static final String GET_AUTH_CORP_JSAPI_TICKET = "/cgi-bin/get_jsapi_ticket";
     public static final String GET_SUITE_JSAPI_TICKET = "/cgi-bin/ticket/get";
+    public static final String GET_ADMIN_LIST = "/cgi-bin/service/get_admin_list";
 
   }
 
