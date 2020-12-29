@@ -5,7 +5,10 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import me.chanjar.weixin.common.util.json.WxGsonBuilder;
+<<<<<<< HEAD
 import me.chanjar.weixin.cp.bean.external.WxCpUserExternalTagGroupInfo;
+=======
+>>>>>>> origin/develop_parent
 import me.chanjar.weixin.cp.util.json.WxCpGsonBuilder;
 
 import java.util.List;
