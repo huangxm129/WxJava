@@ -4,16 +4,21 @@ import com.google.gson.annotations.SerializedName;
 import lombok.Data;
 import me.chanjar.weixin.cp.util.json.WxCpGsonBuilder;
 
+<<<<<<< HEAD
 import java.io.Serializable;
 
 /**
  * 获取访问用户敏感信息
+=======
+/**
+>>>>>>> parent/develop
  * @author huangxiaoming
  */
 @Data
 public class WxCpTpUserInfo extends WxCpBaseResp {
 
   private static final long serialVersionUID = -5028321625140879571L;
+<<<<<<< HEAD
   @SerializedName("CorpId")
   private String corpId;
 
@@ -29,6 +34,44 @@ public class WxCpTpUserInfo extends WxCpBaseResp {
   @SerializedName("expires_in")
   private String expiresIn;
 
+=======
+
+  /**
+   * 用户所属企业的corpid
+   */
+  @SerializedName("CorpId")
+  private String corpId;
+
+  /**
+   * 用户在企业内的UserID，如果该企业与第三方应用有授权关系时，返回明文UserId，否则返回密文UserId
+   */
+  @SerializedName("UserId")
+  private String userId;
+
+  /**
+   * 手机设备号(由企业微信在安装时随机生成，删除重装会改变，升级不受影响)
+   */
+  @SerializedName("DeviceId")
+  private String deviceId;
+
+  /**
+   * 成员票据，最大为512字节。
+   * scope为snsapi_userinfo或snsapi_privateinfo，且用户在应用可见范围之内时返回此参数。
+   * 后续利用该参数可以获取用户信息或敏感信息，参见:https://work.weixin.qq.com/api/doc/90001/90143/91122
+   */
+  @SerializedName("user_ticket")
+  private String userTicket;
+
+  /**
+   * user_ticket的有效时间（秒），随user_ticket一起返回
+   */
+  @SerializedName("expires_in")
+  private String expiresIn;
+
+  /**
+   * 全局唯一。对于同一个服务商，不同应用获取到企业内同一个成员的open_userid是相同的，最多64个字节。仅第三方应用可获取
+   */
+>>>>>>> parent/develop
   @SerializedName("open_userid")
   private String openUserId;
 

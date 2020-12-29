@@ -4,16 +4,22 @@ import com.google.gson.annotations.SerializedName;
 import lombok.Data;
 import me.chanjar.weixin.cp.util.json.WxCpGsonBuilder;
 
+<<<<<<< HEAD
 import java.io.Serializable;
 
 /**
  * 获取访问用户身份
+=======
+/**
+ *
+>>>>>>> parent/develop
  * @author huangxiaoming
  */
 @Data
 public class WxCpTpUserDetail extends WxCpBaseResp {
 
   private static final long serialVersionUID = -5028321625140879571L;
+<<<<<<< HEAD
   @SerializedName("corpid")
   private String corpId;
 
@@ -29,6 +35,41 @@ public class WxCpTpUserDetail extends WxCpBaseResp {
   @SerializedName("avatar")
   private String avatar;
 
+=======
+  /**
+   * 用户所属企业的corpid
+   */
+  @SerializedName("corpid")
+  private String corpId;
+
+  /**
+   * 成员UserID
+   */
+  @SerializedName("userid")
+  private String userId;
+
+  /**
+   * 成员姓名
+   */
+  @SerializedName("name")
+  private String name;
+
+  /**
+   * 性别。0表示未定义，1表示男性，2表示女性
+   */
+  @SerializedName("gender")
+  private String gender;
+
+  /**
+   * 头像url。仅在用户同意snsapi_privateinfo授权时返回
+   */
+  @SerializedName("avatar")
+  private String avatar;
+
+  /**
+   * 员工个人二维码（扫描可添加为外部联系人），仅在用户同意snsapi_privateinfo授权时返回
+   */
+>>>>>>> parent/develop
   @SerializedName("qr_code")
   private String qrCode;
 
@@ -39,5 +80,8 @@ public class WxCpTpUserDetail extends WxCpBaseResp {
   public String toJson() {
     return WxCpGsonBuilder.create().toJson(this);
   }
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent/develop
 }

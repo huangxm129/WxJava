@@ -6,7 +6,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.github.binarywang</groupId>
   <artifactId>wx-java</artifactId>
-  <version>3.9.9.B2</version>
+  <version>4.0.2.B</version>
   <packaging>pom</packaging>
   <name>WxJava - Weixin/Wechat Java SDK</name>
   <description>微信开发Java SDK</description>
@@ -121,7 +121,7 @@
 
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <httpclient.version>4.5</httpclient.version>
-    <jetty.version>9.4.31.v20200723</jetty.version>
+    <jetty.version>9.4.35.v20201120</jetty.version>
   </properties>
 
   <dependencyManagement>
@@ -177,7 +177,7 @@
       <dependency>
         <groupId>com.thoughtworks.xstream</groupId>
         <artifactId>xstream</artifactId>
-        <version>1.4.11.1</version>
+        <version>1.4.15</version>
       </dependency>
       <dependency>
         <groupId>com.google.guava</groupId>
@@ -282,16 +282,14 @@
   </dependencyManagement>
 
   <distributionManagement>
-    <repository>
-      <id>esen_release</id>
-      <name>Internal Releases</name>
-      <url>http://nexus.esenyun.com/nexus/content/repositories/releases/</url>
-    </repository>
     <snapshotRepository>
-      <id>esen_snapshot</id>
-      <name>Internal Releases</name>
-      <url>http://nexus.esenyun.com/nexus/content/repositories/snapshots/</url>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
     </snapshotRepository>
+    <repository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+    </repository>
   </distributionManagement>
 
   <profiles>
@@ -382,7 +380,17 @@
     </pluginManagement>
 
     <plugins>
-
+      <plugin>
+        <groupId>org.sonatype.plugins</groupId>
+        <artifactId>nexus-staging-maven-plugin</artifactId>
+        <version>1.6.3</version>
+        <extensions>true</extensions>
+        <configuration>
+          <serverId>ossrh</serverId>
+          <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+          <autoReleaseAfterClose>true</autoReleaseAfterClose>
+        </configuration>
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-release-plugin</artifactId>

@@ -20,13 +20,19 @@ public class WxCpTpDefaultConfigImpl implements WxCpTpConfigStorage, Serializabl
 
   private volatile String corpId;
   private volatile String corpSecret;
+  /**
+   * 服务商secret
+   */
+  private volatile String providerSecret;
+  private volatile String providerToken;
+  private volatile long providerTokenExpiresTime;
 
   private volatile String suiteId;
   private volatile String suiteSecret;
 
   private volatile String token;
   private volatile String suiteAccessToken;
-  private volatile long   suiteAccessTokenExpiresTime;
+  private volatile long suiteAccessTokenExpiresTime;
   private volatile String aesKey;
 
   private volatile String suiteTicket;
@@ -91,7 +97,7 @@ public class WxCpTpDefaultConfigImpl implements WxCpTpConfigStorage, Serializabl
 
   @Override
   public synchronized void updateSuiteAccessToken(WxAccessToken suiteAccessToken) {
-	  updateSuiteAccessToken(suiteAccessToken.getAccessToken(), suiteAccessToken.getExpiresIn());
+    updateSuiteAccessToken(suiteAccessToken.getAccessToken(), suiteAccessToken.getExpiresIn());
   }
 
   @Override
@@ -199,6 +205,11 @@ public class WxCpTpDefaultConfigImpl implements WxCpTpConfigStorage, Serializabl
     return this.corpSecret;
   }
 
+  @Override
+  public String getProviderSecret() {
+    return providerSecret;
+  }
+
   @Deprecated
   public void setCorpSecret(String corpSecret) {
     this.corpSecret = corpSecret;
@@ -233,8 +244,7 @@ public class WxCpTpDefaultConfigImpl implements WxCpTpConfigStorage, Serializabl
     Long t = this.authCorpJsApiTicketExpireTimeMap.get(authCorpId);
     if (t == null) {
       return System.currentTimeMillis() > t;
-    }
-    else {
+    } else {
       return true;
     }
   }
@@ -257,8 +267,7 @@ public class WxCpTpDefaultConfigImpl implements WxCpTpConfigStorage, Serializabl
     Long t = authSuiteJsApiTicketExpireTimeMap.get(authCorpId);
     if (t == null) {
       return System.currentTimeMillis() > t;
-    }
-    else {
+    } else {
       return true;
     }
   }
@@ -269,6 +278,22 @@ public class WxCpTpDefaultConfigImpl implements WxCpTpConfigStorage, Serializabl
     authSuiteJsApiTicketMap.put(authCorpId, jsApiTicket);
     // 预留200秒的时间
     authSuiteJsApiTicketExpireTimeMap.put(authCorpId, System.currentTimeMillis() + (expiredInSeconds - 200) * 1000L);
+  }
+
+  @Override
+  public boolean isProviderTokenExpired() {
+    return System.currentTimeMillis() > providerTokenExpiresTime;
+  }
+
+  @Override
+  public void updateProviderToken(String providerToken, int expiredInSeconds) {
+    this.providerToken = providerToken;
+    this.providerTokenExpiresTime = System.currentTimeMillis() + expiredInSeconds * 1000L;
+  }
+
+  @Override
+  public String getProviderToken() {
+    return providerToken;
   }
 
   public void setOauth2redirectUri(String oauth2redirectUri) {

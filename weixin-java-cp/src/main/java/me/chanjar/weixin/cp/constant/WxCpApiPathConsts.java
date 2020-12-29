@@ -113,6 +113,14 @@ public final class WxCpApiPathConsts {
     public static final String CALENDAR_UPDATE = "/cgi-bin/oa/calendar/update";
     public static final String CALENDAR_GET = "/cgi-bin/oa/calendar/get";
     public static final String CALENDAR_DEL = "/cgi-bin/oa/calendar/del";
+
+    public static final String SCHEDULE_ADD = "/cgi-bin/oa/schedule/add";
+    public static final String SCHEDULE_UPDATE = "/cgi-bin/oa/schedule/update";
+    public static final String SCHEDULE_GET = "/cgi-bin/oa/schedule/get";
+    public static final String SCHEDULE_DEL = "/cgi-bin/oa/schedule/del";
+    public static final String SCHEDULE_LIST = "/cgi-bin/oa/schedule/get_by_calendar";
+
+    public static final String COPY_TEMPLATE = "/cgi-bin/oa/approval/copytemplate";
   }
 
   @UtilityClass
@@ -140,13 +148,14 @@ public final class WxCpApiPathConsts {
     public static final String GET_PROVIDER_TOKEN = "/cgi-bin/service/get_provider_token";
     public static final String GET_PREAUTH_CODE = "/cgi-bin/service/get_pre_auth_code";
     public static final String GET_AUTH_INFO = "/cgi-bin/service/get_auth_info";
+    public static final String GET_AUTH_CORP_JSAPI_TICKET = "/cgi-bin/get_jsapi_ticket";
+    public static final String GET_SUITE_JSAPI_TICKET = "/cgi-bin/ticket/get";
     public static final String GET_USERINFO3RD = "/cgi-bin/service/getuserinfo3rd";
     public static final String GET_USERDETAIL3RD = "/cgi-bin/service/getuserdetail3rd";
     public static final String GET_LOGIN_INFO = "/cgi-bin/service/get_login_info";
-    public static final String GET_AUTH_CORP_JSAPI_TICKET = "/cgi-bin/get_jsapi_ticket";
-    public static final String GET_SUITE_JSAPI_TICKET = "/cgi-bin/ticket/get";
-    public static final String GET_ADMIN_LIST = "/cgi-bin/service/get_admin_list";
 
+
+    public static final String CONTACT_SEARCH = "/cgi-bin/service/contact/search";
   }
 
   @UtilityClass
@@ -164,6 +173,7 @@ public final class WxCpApiPathConsts {
     public static final String USER_CONVERT_TO_USERID = "/cgi-bin/user/convert_to_userid";
     public static final String GET_USER_ID = "/cgi-bin/user/getuserid";
     public static final String GET_EXTERNAL_CONTACT = "/cgi-bin/crm/get_external_contact?external_userid=";
+    public static final String GET_JOIN_QR_CODE = "/cgi-bin/corp/get_join_qrcode?size_type=";
   }
 
   @UtilityClass

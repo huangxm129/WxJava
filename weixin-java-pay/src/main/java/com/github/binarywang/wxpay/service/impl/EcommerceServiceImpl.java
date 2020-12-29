@@ -1,7 +1,7 @@
 package com.github.binarywang.wxpay.service.impl;
 
 import com.github.binarywang.wxpay.bean.ecommerce.*;
-import com.github.binarywang.wxpay.bean.ecommerce.enums.BillTypeEnum;
+import com.github.binarywang.wxpay.bean.ecommerce.enums.FundBillTypeEnum;
 import com.github.binarywang.wxpay.bean.ecommerce.enums.SpAccountTypeEnum;
 import com.github.binarywang.wxpay.bean.ecommerce.enums.TradeTypeEnum;
 import com.github.binarywang.wxpay.exception.WxPayException;
@@ -150,6 +150,12 @@ public class EcommerceServiceImpl implements EcommerceService {
   }
 
   @Override
+  public void closePartnerTransactions(PartnerTransactionsCloseRequest request) throws WxPayException {
+    String url = String.format("%s/v3/pay/partner/transactions/out-trade-no/%s/close", this.payService.getPayBaseUrl(), request.getOutTradeNo());
+    String response = this.payService.postV3(url, GSON.toJson(request));
+  }
+
+  @Override
   public FundBalanceResult spNowBalance(SpAccountTypeEnum accountType) throws WxPayException {
     String url = String.format("%s/v3/merchant/fund/balance/%s", this.payService.getPayBaseUrl(), accountType);
     URI uri = URI.create(url);
@@ -295,10 +301,17 @@ public class EcommerceServiceImpl implements EcommerceService {
   }
 
   @Override
-  public BillResult applyBill(BillTypeEnum billType, BillRequest request) throws WxPayException {
+  public TradeBillResult applyBill(TradeBillRequest request) throws WxPayException {
+    String url = String.format("%s/v3/bill/tradebill?%s", this.payService.getPayBaseUrl(), this.parseURLPair(request));
+    String response = this.payService.getV3(URI.create(url));
+    return GSON.fromJson(response, TradeBillResult.class);
+  }
+
+  @Override
+  public FundBillResult applyFundBill(FundBillTypeEnum billType, FundBillRequest request) throws WxPayException {
     String url = String.format(billType.getUrl(), this.payService.getPayBaseUrl(), this.parseURLPair(request));
     String response = this.payService.getV3(URI.create(url));
-    return GSON.fromJson(response, BillResult.class);
+    return GSON.fromJson(response, FundBillResult.class);
   }
 
   @Override
