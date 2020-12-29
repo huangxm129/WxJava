@@ -4,37 +4,15 @@ import com.google.gson.annotations.SerializedName;
 import lombok.Data;
 import me.chanjar.weixin.cp.util.json.WxCpGsonBuilder;
 
-<<<<<<< HEAD
-import java.io.Serializable;
 
 /**
  * 获取访问用户敏感信息
-=======
-/**
->>>>>>> parent/develop
  * @author huangxiaoming
  */
 @Data
 public class WxCpTpUserInfo extends WxCpBaseResp {
 
   private static final long serialVersionUID = -5028321625140879571L;
-<<<<<<< HEAD
-  @SerializedName("CorpId")
-  private String corpId;
-
-  @SerializedName("UserId")
-  private String userId;
-
-  @SerializedName("DeviceId")
-  private String deviceId;
-
-  @SerializedName("user_ticket")
-  private String userTicket;
-
-  @SerializedName("expires_in")
-  private String expiresIn;
-
-=======
 
   /**
    * 用户所属企业的corpid
@@ -71,7 +49,6 @@ public class WxCpTpUserInfo extends WxCpBaseResp {
   /**
    * 全局唯一。对于同一个服务商，不同应用获取到企业内同一个成员的open_userid是相同的，最多64个字节。仅第三方应用可获取
    */
->>>>>>> parent/develop
   @SerializedName("open_userid")
   private String openUserId;
 

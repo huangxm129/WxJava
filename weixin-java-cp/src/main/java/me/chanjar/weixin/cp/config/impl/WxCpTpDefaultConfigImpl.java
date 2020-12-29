@@ -59,10 +59,6 @@ public class WxCpTpDefaultConfigImpl implements WxCpTpConfigStorage, Serializabl
 
   private volatile String baseApiUrl;
 
-  private volatile String providerToken;
-
-  private volatile long providerTokenExpiresTime;
-
   @Override
   public void setBaseApiUrl(String baseUrl) {
     this.baseApiUrl = baseUrl;
