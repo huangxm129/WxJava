@@ -133,6 +133,11 @@ public class WxCpConsts {
      */
     public static final String DELETE_SCHEDULE = "delete_schedule";
 
+    /**
+     * 客户群事件
+     */
+    public static final String CHANGE_EXTERNAL_CHAT = "change_external_chat";
+
   }
 
   /**
@@ -354,4 +359,22 @@ public class WxCpConsts {
      */
     public static final String MINIPROGRAM = "miniprogram";
   }
+
+  @UtilityClass
+  public static class ExternalChatChangeType {
+    /**
+     * 客户群创建事件.
+     */
+    public static final String CREATE = "create";
+    /**
+     * 客户群变更事件.
+     */
+    public static final String UPDATE = "update";
+    /**
+     * 客户群解散事件.
+     */
+    public static final String DISMISS = "dismiss";
+
+  }
+
 }
